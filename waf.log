@@ -1,4 +1,0 @@
-
-warn 2019-06-27 15:57:00 - (::1) [XSS] - <script>javascript:alert(1)</script>
-warn 2019-06-27 15:57:02 - (::1) [XSS] - <script>javascript:alert(1)</script>
-warn 2019-06-27 15:59:55 (::1) [SQL] - 1234.5%29+ORDER+BY+1
