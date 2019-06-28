@@ -1,0 +1,31 @@
+{
+    "name": "riverside/php-waf",
+    "description": "PHP Web application firewall",
+    "type": "library",
+    "version": "1.0.0",
+    "keywords": ["php", "firewall", "waf", "application", "webapp"],
+    "homepage": "https://github.com/riverside/php-waf",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dimitar Ivanov",
+            "email": "info@zinoui.com",
+            "homepage": "http://zinoui.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "8"
+    },
+    "autoload": {
+        "psr-4": {
+            "PhpWaf\\": "src/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    }
+}
