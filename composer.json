@@ -1,6 +1,6 @@
 {
     "name": "riverside/php-waf",
-    "description": "PHP Web application firewall",
+    "description": "PHP Web Application Firewall",
     "type": "library",
     "version": "1.0.0",
     "keywords": ["php", "firewall", "waf", "application", "webapp"],
