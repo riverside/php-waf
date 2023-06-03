@@ -17,9 +17,9 @@ jobs:
       - uses: php-actions/composer@v6
         with:
           php_version: '7.2'
-      - uses: php-actions/phpunit@v2
+      - uses: php-actions/phpunit@v3
         with:
-	  version: '8'
+	  version: '8.5.8'
           php_version: '7.2'
       - run: composer update --prefer-source
       - run: phpunit
