@@ -11,11 +11,12 @@ jobs:
     runs-on: '${{ matrix.os }}'
     strategy:
       matrix:
-        os:
-          - ubuntu-18.04
+        os: ['ubuntu-latest']
+	php-versions: ['7.2']
+	phpunit-versions: ['latest']
     steps:
       - uses: actions/checkout@v2
         with:
-          php-version: 7.3
+          php-version: ${{ matrix.php-versions }}
       - run: composer update --prefer-source
       - run: phpunit
