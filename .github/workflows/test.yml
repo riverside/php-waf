@@ -14,7 +14,5 @@ jobs:
         os: ['ubuntu-latest']
     steps:
       - uses: actions/checkout@v2
-        with:
-          php-version: 7.4
       - run: composer update --prefer-source
       - run: phpunit
