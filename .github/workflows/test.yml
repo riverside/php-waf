@@ -12,7 +12,7 @@ jobs:
           php_version: '7.2'
 
       - name: PHPUnit Tests
-        uses: php-actions/phpunit@master
+        uses: php-actions/phpunit@v3
         with:
           php_version: '7.2'
           version: 8
