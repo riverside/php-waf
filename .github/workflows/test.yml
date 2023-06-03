@@ -13,6 +13,6 @@ jobs:
       matrix:
         os: ['ubuntu-latest']
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@main
       - run: composer update --prefer-source
       - run: phpunit
