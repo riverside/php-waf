@@ -1,8 +1,9 @@
 # php-waf
-[![CI](https://github.com/riverside/php-waf/actions/workflows/test.yml/badge.svg)](https://github.com/riverside/php-waf/actions/workflows/test.yml)
-[![License](https://poser.pugx.org/riverside/php-waf/license)](https://packagist.org/packages/riverside/php-waf)
-
 PHP Web Application Firewall
+
+| Build | License |
+| --- | --- |
+| [![CI](https://github.com/riverside/php-waf/actions/workflows/test.yml/badge.svg)](https://github.com/riverside/php-waf/actions/workflows/test.yml) | [![License](https://poser.pugx.org/riverside/php-waf/license)](https://packagist.org/packages/riverside/php-waf) |
 
 ### Requirements
 - PHP >= 7.0
