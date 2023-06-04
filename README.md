@@ -1,5 +1,6 @@
 # php-waf
-[![Build Status](https://api.travis-ci.org/riverside/php-waf.svg)](https://travis-ci.org/riverside/php-waf) [![License](https://poser.pugx.org/riverside/php-waf/license)](https://packagist.org/packages/riverside/php-waf)
+[![CI](https://github.com/riverside/php-waf/actions/workflows/test.yml/badge.svg)](https://github.com/riverside/php-waf/actions/workflows/test.yml)
+[![License](https://poser.pugx.org/riverside/php-waf/license)](https://packagist.org/packages/riverside/php-waf)
 
 PHP Web Application Firewall
 
