@@ -1,6 +1,11 @@
 <?php
 namespace PhpWaf;
 
+/**
+ * Class BaseFilter
+ *
+ * @package PhpWaf
+ */
 abstract class BaseFilter
 {
     /**
@@ -18,8 +23,8 @@ abstract class BaseFilter
      */
     public function __construct()
     {
-        $payloads = @file(__DIR__ . '/../payloads/' . $this->payloads_file);
-        if ($payloads !== false)
+        $filename = __DIR__ . '/payloads/' . $this->payloads_file;
+        if (is_file($filename) && ($payloads = file($filename)) !== false)
         {
             $this->payloads = $payloads;
         }
