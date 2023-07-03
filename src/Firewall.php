@@ -1,6 +1,11 @@
 <?php
 namespace PhpWaf;
 
+/**
+ * Class Firewall
+ *
+ * @package PhpWaf
+ */
 class Firewall
 {
     /**
@@ -12,19 +17,23 @@ class Firewall
         'SQL' => true,
         'XML' => false,
         'XSS' => true,
+        'CRLF' => true,
     );
+
     /**
      * The mode in that firewall is running
      *
      * @var int Valid modes are: 1 - block & log; 2 - block only; 3 - log only
      */
     protected $mode = 1;
+
     /**
      * The log file path
      *
      * @var string
      */
     protected $log_file = 'waf.log';
+
     /**
      * Log format
      *
@@ -42,7 +51,9 @@ class Firewall
 
     /**
      * Firewall constructor.
+     *
      * @param int $mode
+     * @throws \Exception
      */
     public function __construct(int $mode=1)
     {
@@ -59,34 +70,43 @@ class Firewall
     }
 
     /**
-     * Write the detected  to a log file
+     * Write the detected to a log file
      *
      * @param string $value
      * @param string $filter
      * @return Firewall
+     * @throws \Exception
      */
-    public function log(string $value, string $filter): self
+    public function log(string $value, string $filter): Firewall
     {
-        if (!empty($this->log_file) && !empty($this->log_format))
+        if (empty($this->log_file))
         {
-            $data = str_replace(
-                array('%f', '%v', '%i', '%d', '%t', '%m', '%u'),
-                array($filter, $value, $_SERVER['REMOTE_ADDR'], date('Y-m-d'), date('H:i:s'),
-                    date('Y-m-d H:i:s'), time()),
-                $this->log_format);
-
-            file_put_contents($this->log_file, "\nwarn $data", FILE_APPEND);
+            throw new \Exception("Empty log_file.");
         }
+
+        if (empty($this->log_format))
+        {
+            throw new \Exception("Empty log_format.");
+        }
+
+        $data = str_replace(
+            array('%f', '%v', '%i', '%d', '%t', '%m', '%u'),
+            array($filter, $value, $_SERVER['REMOTE_ADDR'], date('Y-m-d'), date('H:i:s'),
+                date('Y-m-d H:i:s'), time()),
+            $this->log_format);
+
+        file_put_contents($this->log_file, "\nwarn $data", FILE_APPEND);
 
         return $this;
     }
 
     /**
      * Set log file path
+     *
      * @param string $value
      * @return Firewall
      */
-    public function setLogFile(string $value): self
+    public function setLogFile(string $value): Firewall
     {
         $this->log_file = $value;
 
@@ -99,7 +119,7 @@ class Firewall
      * @param string $value
      * @return Firewall
      */
-    public function setLogFormat(string $value): self
+    public function setLogFormat(string $value): Firewall
     {
         $this->log_format = $value;
 
@@ -111,13 +131,15 @@ class Firewall
      *
      * @param int $value
      * @return Firewall
+     * @throws \Exception
      */
-    public function setMode(int $value): self
+    public function setMode(int $value): Firewall
     {
-        if (in_array($value, range(1,3)))
+        if (!in_array($value, range(1,3)))
         {
-            $this->mode = $value;
+            throw new \Exception("Unknown mode {$value}.");
         }
+        $this->mode = $value;
 
         return $this;
     }
@@ -127,13 +149,15 @@ class Firewall
      *
      * @param string $filter
      * @return Firewall
+     * @throws \Exception
      */
-    public function enable(string $filter): self
+    public function enable(string $filter): Firewall
     {
-        if (array_key_exists($filter, $this->filters))
+        if (!array_key_exists($filter, $this->filters))
         {
-            $this->filters[$filter] = true;
+            throw new \Exception("Unknown filter {$filter}.");
         }
+        $this->filters[$filter] = true;
 
         return $this;
     }
@@ -143,13 +167,15 @@ class Firewall
      *
      * @param string $filter
      * @return Firewall
+     * @throws \Exception
      */
-    public function disable(string $filter): self
+    public function disable(string $filter): Firewall
     {
-        if (array_key_exists($filter, $this->filters))
+        if (!array_key_exists($filter, $this->filters))
         {
-            $this->filters[$filter] = false;
+            throw new \Exception("Unknown filter {$filter}.");
         }
+        $this->filters[$filter] = false;
 
         return $this;
     }
@@ -161,7 +187,7 @@ class Firewall
      * @param string $filter
      * @return Firewall
      */
-    public function handle(string $value, string $filter): self
+    public function handle(string $value, string $filter): Firewall
     {
         if ($this->mode == 1)
         {
@@ -190,12 +216,13 @@ class Firewall
      *
      * @param string $filter
      * @return Firewall
+     * @throws \Exception
      */
-    public function runFilter(string $filter): self
+    public function runFilter(string $filter): Firewall
     {
-        if (!$this->filters[$filter])
+        if (!array_key_exists($filter, $this->getFilters()))
         {
-            return $this;
+            throw new \Exception("Unknown filter {$filter}.");
         }
 
         $class = "PhpWaf\\Filter\\$filter";
@@ -224,11 +251,16 @@ class Firewall
      * Runs all the enabled filters
      *
      * @return Firewall
+     * @throws \Exception
      */
-    public function run(): self
+    public function run(): Firewall
     {
-        foreach (array_keys($this->filters) as $filter)
+        foreach ($this->getFilters() as $filter => $enabled)
         {
+            if (!$enabled)
+            {
+                continue;
+            }
             $this->runFilter($filter);
         }
 
