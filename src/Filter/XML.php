@@ -5,6 +5,7 @@ use PhpWaf\BaseFilter;
 
 /**
  * Class XML
+ *
  * @package PhpWaf\Filter
  */
 class XML extends BaseFilter
