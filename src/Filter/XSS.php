@@ -3,6 +3,11 @@ namespace PhpWaf\Filter;
 
 use PhpWaf\BaseFilter;
 
+/**
+ * Class XSS
+ *
+ * @package PhpWaf\Filter
+ */
 class XSS extends BaseFilter
 {
     /**
