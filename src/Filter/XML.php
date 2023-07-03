@@ -3,6 +3,10 @@ namespace PhpWaf\Filter;
 
 use PhpWaf\BaseFilter;
 
+/**
+ * Class XML
+ * @package PhpWaf\Filter
+ */
 class XML extends BaseFilter
 {
     /**
