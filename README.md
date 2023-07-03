@@ -44,8 +44,9 @@ $ php composer.phar install
     ```
 
 ### Available filters
-| Filter             | Description          |
-| ------------------ | -------------------- |
-| SQL                | Prevent SQL Injections |
-| XSS                | XSS Attacks          |
-| XML                | Stops XML Attacks          |
+| Filter             | Description           |
+| ------------------ | --------------------- |
+| SQL                | SQL Injection         |
+| CRLF               | CRLF Injection        |
+| XSS                | Cross-site Scripting  |
+| XML                | XML Attacks           |
