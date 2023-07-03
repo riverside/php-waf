@@ -3,6 +3,11 @@ namespace PhpWaf\Filter;
 
 use PhpWaf\BaseFilter;
 
+/**
+ * Class SQL
+ *
+ * @package PhpWaf\Filter
+ */
 class SQL extends BaseFilter
 {
     /**
