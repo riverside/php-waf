@@ -9,8 +9,8 @@
     "authors": [
         {
             "name": "Dimitar Ivanov",
-            "email": "info@zinoui.com",
-            "homepage": "http://zinoui.com",
+            "email": "biggie@abv.bg",
+            "homepage": "https://twitter.com/DimitarIvanov",
             "role": "Developer"
         }
     ],
@@ -23,6 +23,11 @@
     "autoload": {
         "psr-4": {
             "PhpWaf\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PhpWaf\\Tests\\": "tests/"
         }
     },
     "scripts": {
