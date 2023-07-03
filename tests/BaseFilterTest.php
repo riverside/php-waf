@@ -1,7 +1,9 @@
 <?php
-namespace PhpWaf;
+namespace PhpWaf\Tests;
 
 use PHPUnit\Framework\TestCase;
+use PhpWaf\BaseFilter;
+use PhpWaf\Firewall;
 
 class BaseFilterTest extends TestCase
 {
@@ -32,8 +34,12 @@ class BaseFilterTest extends TestCase
     {
         $firewall = new Firewall();
 
-        foreach (array_keys($firewall->getFilters()) as $filter)
+        foreach ($firewall->getFilters() as $filter => $enabled)
         {
+            if (!$enabled)
+            {
+                continue;
+            }
             $className = "PhpWaf\\Filter\\$filter";
             $object = new $className;
             $this->assertTrue(method_exists($object, "safe"));
