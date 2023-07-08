@@ -11,6 +11,8 @@ use PhpWaf\BaseFilter;
 class XML extends BaseFilter
 {
     /**
+     * Payload filename
+     *
      * @var string
      */
     protected $payloads_file = "xml.txt";

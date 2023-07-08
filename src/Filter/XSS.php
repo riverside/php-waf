@@ -11,6 +11,8 @@ use PhpWaf\BaseFilter;
 class XSS extends BaseFilter
 {
     /**
+     * Payload filename
+     *
      * @var string
      */
     protected $payloads_file = "xss.txt";

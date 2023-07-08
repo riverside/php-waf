@@ -11,6 +11,8 @@ use PhpWaf\BaseFilter;
 class SQL extends BaseFilter
 {
     /**
+     * Payload filename
+     *
      * @var string
      */
     protected $payloads_file = "sql.txt";

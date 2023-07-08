@@ -186,6 +186,7 @@ class Firewall
      * @param string $value
      * @param string $filter
      * @return Firewall
+     * @throws \Exception
      */
     public function handle(string $value, string $filter): Firewall
     {
@@ -212,6 +213,25 @@ class Firewall
     }
 
     /**
+     * Get filter's instance
+     *
+     * @param string $filter
+     * @return BaseFilter
+     * @throws \Exception
+     */
+    public function getFilterInstance(string $filter): BaseFilter
+    {
+        if (!array_key_exists($filter, $this->getFilters()))
+        {
+            throw new \Exception("Unknown filter {$filter}.");
+        }
+
+        $class = "PhpWaf\\Filter\\$filter";
+
+        return new $class;
+    }
+
+    /**
      * Runs a given filter
      *
      * @param string $filter
@@ -220,13 +240,7 @@ class Firewall
      */
     public function runFilter(string $filter): Firewall
     {
-        if (!array_key_exists($filter, $this->getFilters()))
-        {
-            throw new \Exception("Unknown filter {$filter}.");
-        }
-
-        $class = "PhpWaf\\Filter\\$filter";
-        $instance = new $class;
+        $instance = $this->getFilterInstance($filter);
 
         foreach ($_GET as $key => $val)
         {

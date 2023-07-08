@@ -11,6 +11,8 @@ use PhpWaf\BaseFilter;
 class CRLF extends BaseFilter
 {
     /**
+     * Payload filename
+     *
      * @var string
      */
     protected $payloads_file = "crlf.txt";

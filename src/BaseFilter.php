@@ -9,11 +9,15 @@ namespace PhpWaf;
 abstract class BaseFilter
 {
     /**
+     * Payloads
+     *
      * @var array
      */
     protected $payloads = array();
 
     /**
+     * Payload filename
+     *
      * @var string
      */
     protected $payloads_file = "";
