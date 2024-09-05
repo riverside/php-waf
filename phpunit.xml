@@ -1,7 +1,0 @@
-<phpunit bootstrap="vendor/autoload.php" colors="true" verbose="true">
-    <testsuites>
-        <testsuite name="php-waf">
-            <directory>./tests/</directory>
-        </testsuite>
-    </testsuites>
-</phpunit>
