@@ -2,7 +2,7 @@
     "name": "riverside/php-waf",
     "description": "PHP Web Application Firewall",
     "type": "library",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "keywords": ["php", "firewall", "waf", "application", "webapp"],
     "homepage": "https://github.com/riverside/php-waf",
     "license": "MIT",
