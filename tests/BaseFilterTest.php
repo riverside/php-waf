@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace PhpWaf\Tests;
 
 use PHPUnit\Framework\TestCase;
@@ -20,6 +22,9 @@ class BaseFilterTest extends TestCase
         }
     }
 
+    /**
+     * @throws \PhpWaf\Exception
+     */
     public function testFilterAttributes()
     {
         $firewall = new Firewall();
@@ -30,6 +35,9 @@ class BaseFilterTest extends TestCase
         }
     }
 
+    /**
+     * @throws \PhpWaf\Exception
+     */
     public function testFilterMethods()
     {
         $firewall = new Firewall();
