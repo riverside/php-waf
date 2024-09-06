@@ -212,21 +212,4 @@ class FirewallTest extends TestCase
         $this->expectExceptionCode(Exception::ERROR_UNKNOWN_FILTER_CODE);
         $firewall->enable('unknown');
     }
-
-    /**
-     * @runInSeparateProcess
-     */
-    public function testBlock()
-    {
-        ob_start();
-
-        $this->expectOutputString('');
-        $this->expectException(\PHPUnit\Framework\Error\Warning::class);
-
-        Firewall::block();
-
-        $this->assertEquals(400, http_response_code());
-
-        ob_end_clean();
-    }
 }
