@@ -1,9 +1,9 @@
 # php-waf
 PHP Web Application Firewall
 
-| Build | License |
-| --- | --- |
-| [![CI](https://github.com/riverside/php-waf/actions/workflows/test.yml/badge.svg)](https://github.com/riverside/php-waf/actions/workflows/test.yml) | [![License](https://poser.pugx.org/riverside/php-waf/license)](https://packagist.org/packages/riverside/php-waf) |
+| Build | Stable | License |
+| --- | --- | --- |
+| [![CI][x1]][y1] | [![Latest Stable Version][x2]][y2] | [![License][x3]][y3] |
 
 ### Requirements
 - PHP >= 7.0
@@ -50,3 +50,10 @@ $ php composer.phar install
 | CRLF               | CRLF Injection        |
 | XSS                | Cross-site Scripting  |
 | XML                | XML Attacks           |
+
+[x1]: https://github.com/riverside/php-waf/actions/workflows/test.yml/badge.svg
+[y1]: https://github.com/riverside/php-waf/actions/workflows/test.yml
+[x2]: https://poser.pugx.org/riverside/php-waf/v/stable
+[y2]: https://packagist.org/packages/riverside/php-waf
+[x3]: https://poser.pugx.org/riverside/php-waf/license
+[y3]: https://packagist.org/packages/riverside/php-waf
