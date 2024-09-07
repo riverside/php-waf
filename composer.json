@@ -2,7 +2,7 @@
     "name": "riverside/php-waf",
     "description": "PHP Web Application Firewall",
     "type": "library",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "keywords": ["php", "firewall", "waf", "application", "webapp"],
     "homepage": "https://github.com/riverside/php-waf",
     "license": "MIT",
@@ -22,12 +22,12 @@
     },
     "autoload": {
         "psr-4": {
-            "PhpWaf\\": "src/"
+            "Riverside\\Waf\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "PhpWaf\\Tests\\": "tests/"
+            "Riverside\\Waf\\Tests\\": "tests/"
         }
     },
     "scripts": {

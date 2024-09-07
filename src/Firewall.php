@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace PhpWaf;
+namespace Riverside\Waf;
 
 /**
  * Class Firewall
  *
- * @package PhpWaf
+ * @package Riverside\Waf
  */
 class Firewall
 {
@@ -36,10 +36,10 @@ class Firewall
      * @var array
      */
     protected $filters = [
-        'SQL' => true,
-        'XML' => false,
-        'XSS' => true,
-        'CRLF' => true,
+        'Sql' => true,
+        'Xml' => false,
+        'Xss' => true,
+        'Crlf' => true,
     ];
 
     /**
@@ -238,17 +238,17 @@ class Firewall
      * Get filter's instance
      *
      * @param string $filter
-     * @return BaseFilter
+     * @return AbstractFilter
      * @throws Exception
      */
-    public function getFilterInstance(string $filter): BaseFilter
+    public function getFilterInstance(string $filter): AbstractFilter
     {
         if (!array_key_exists($filter, $this->getFilters()))
         {
             throw new Exception(Exception::ERROR_UNKNOWN_FILTER_CODE, Exception::ERROR_UNKNOWN_FILTER_CODE);
         }
 
-        $class = "PhpWaf\\Filter\\$filter";
+        $class = "Riverside\\Waf\\Filter\\$filter";
 
         return new $class;
     }

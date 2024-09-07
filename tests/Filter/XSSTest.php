@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace PhpWaf\Tests\Filter;
+namespace Riverside\Waf\Tests\Filter;
 
 use PHPUnit\Framework\TestCase;
-use PhpWaf\Filter\XSS;
+use Riverside\Waf\Filter\Xss;
 
-class XSSTest extends TestCase
+class XssTest extends TestCase
 {
     public function testAttributes()
     {
@@ -16,19 +16,19 @@ class XSSTest extends TestCase
 
         foreach ($attributes as $attribute)
         {
-            $this->assertClassHasAttribute($attribute, XSS::class);
+            $this->assertClassHasAttribute($attribute, Xss::class);
         }
     }
 
     public function testIsSafe()
     {
-        $crlf = new XSS();
-        $this->assertTrue($crlf->safe('abc'));
+        $xss = new Xss();
+        $this->assertTrue($xss->safe('abc'));
     }
 
     public function testIsNotSafe()
     {
-        $crlf = new XSS();
-        $this->assertFalse($crlf->safe('<img src=1 href=1 onerror="javascript:alert(1)"></img>'));
+        $xss = new Xss();
+        $this->assertFalse($xss->safe('<img src=1 href=1 onerror="javascript:alert(1)"></img>'));
     }
 }

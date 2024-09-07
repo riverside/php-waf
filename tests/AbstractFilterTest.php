@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace PhpWaf\Tests;
+namespace Riverside\Waf\Tests;
 
 use PHPUnit\Framework\TestCase;
-use PhpWaf\BaseFilter;
-use PhpWaf\Firewall;
+use Riverside\Waf\AbstractFilter;
+use Riverside\Waf\Firewall;
 
-class BaseFilterTest extends TestCase
+class AbstractFilterTest extends TestCase
 {
     public function testAttributes()
     {
@@ -18,12 +18,12 @@ class BaseFilterTest extends TestCase
 
         foreach ($attributes as $attribute)
         {
-            $this->assertClassHasAttribute($attribute, BaseFilter::class);
+            $this->assertClassHasAttribute($attribute, AbstractFilter::class);
         }
     }
 
     /**
-     * @throws \PhpWaf\Exception
+     * @throws \Riverside\Waf\Exception
      */
     public function testFilterAttributes()
     {
@@ -31,12 +31,12 @@ class BaseFilterTest extends TestCase
 
         foreach (array_keys($firewall->getFilters()) as $filter)
         {
-            $this->assertClassHasAttribute('payloads_file', "PhpWaf\\Filter\\$filter");
+            $this->assertClassHasAttribute('payloads_file', "Riverside\\Waf\\Filter\\$filter");
         }
     }
 
     /**
-     * @throws \PhpWaf\Exception
+     * @throws \Riverside\Waf\Exception
      */
     public function testFilterMethods()
     {
@@ -48,7 +48,7 @@ class BaseFilterTest extends TestCase
             {
                 continue;
             }
-            $className = "PhpWaf\\Filter\\$filter";
+            $className = "Riverside\\Waf\\Filter\\$filter";
             $object = new $className;
             $this->assertTrue(method_exists($object, "safe"));
         }

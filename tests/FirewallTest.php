@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace PhpWaf\Tests;
+namespace Riverside\Waf\Tests;
 
 use PHPUnit\Framework\TestCase;
-use PhpWaf\Exception;
-use PhpWaf\Filter\CRLF;
-use PhpWaf\Filter\SQL;
-use PhpWaf\Filter\XML;
-use PhpWaf\Filter\XSS;
-use PhpWaf\Firewall;
+use Riverside\Waf\Exception;
+use Riverside\Waf\Filter\Crlf;
+use Riverside\Waf\Filter\Sql;
+use Riverside\Waf\Filter\Xml;
+use Riverside\Waf\Filter\Xss;
+use Riverside\Waf\Firewall;
 
 class FirewallTest extends TestCase
 {
@@ -48,10 +48,10 @@ class FirewallTest extends TestCase
      */
     public function testEnable(Firewall $firewall)
     {
-        $this->assertInstanceOf(Firewall::class, $firewall->enable('XML'));
+        $this->assertInstanceOf(Firewall::class, $firewall->enable('Xml'));
         $filters = $firewall->getFilters();
         $this->assertIsArray($filters);
-        $this->assertTrue($filters['XML']);
+        $this->assertTrue($filters['Xml']);
 
         return $firewall;
     }
@@ -64,10 +64,10 @@ class FirewallTest extends TestCase
      */
     public function testDisable(Firewall $firewall)
     {
-        $this->assertInstanceOf(Firewall::class, $firewall->disable('SQL'));
+        $this->assertInstanceOf(Firewall::class, $firewall->disable('Sql'));
         $filters = $firewall->getFilters();
         $this->assertIsArray($filters);
-        $this->assertFalse($filters['SQL']);
+        $this->assertFalse($filters['Sql']);
 
         return $firewall;
     }
@@ -94,10 +94,10 @@ class FirewallTest extends TestCase
      */
     public function testGetFilterInstance(Firewall $firewall)
     {
-        $this->assertInstanceOf(CRLF::class, $firewall->getFilterInstance('CRLF'));
-        $this->assertInstanceOf(SQL::class, $firewall->getFilterInstance('SQL'));
-        $this->assertInstanceOf(XML::class, $firewall->getFilterInstance('XML'));
-        $this->assertInstanceOf(XSS::class, $firewall->getFilterInstance('XSS'));
+        $this->assertInstanceOf(Crlf::class, $firewall->getFilterInstance('Crlf'));
+        $this->assertInstanceOf(Sql::class, $firewall->getFilterInstance('Sql'));
+        $this->assertInstanceOf(Xml::class, $firewall->getFilterInstance('Xml'));
+        $this->assertInstanceOf(Xss::class, $firewall->getFilterInstance('Xss'));
     }
 
     /**
@@ -112,10 +112,10 @@ class FirewallTest extends TestCase
             ->setMode(Firewall::MODE_LOG)
             ->setLogFile('php://temp')
             ->setLogFormat(Firewall::COMMON_LOG_FORMAT)
-            ->enable('XSS')
-            ->disable('XML')
-            ->enable('CRLF')
-            ->enable('SQL')
+            ->enable('Xss')
+            ->disable('Xml')
+            ->enable('Crlf')
+            ->enable('Sql')
             ->run();
 
         $this->assertInstanceOf(Firewall::class, $firewall);
@@ -135,11 +135,11 @@ class FirewallTest extends TestCase
         $firewall
             ->setMode(Firewall::MODE_LOG)
             ->setLogFile($temp_file);
-        $inst = $firewall->runFilter('SQL');
+        $inst = $firewall->runFilter('Sql');
         $this->assertInstanceOf(Firewall::class, $inst);
 
         $contents = file_get_contents($temp_file);
-        $this->assertStringContainsString('[SQL]', $contents);
+        $this->assertStringContainsString('[Sql]', $contents);
     }
 
     /**
@@ -149,7 +149,7 @@ class FirewallTest extends TestCase
      */
     public function testGetFilter(Firewall $firewall)
     {
-        $filter = 'SQL';
+        $filter = 'Sql';
 
         $firewall->enable($filter);
         $this->assertTrue($firewall->getFilter($filter));
@@ -183,7 +183,7 @@ class FirewallTest extends TestCase
         $this->expectExceptionCode(Exception::ERROR_EMPTY_LOG_FORMAT_CODE);
         $firewall->setLogFile('php://temp');
         $firewall->setLogFormat('');
-        $firewall->log('test', 'SQL');
+        $firewall->log('test', 'Sql');
     }
 
     /**
@@ -197,7 +197,7 @@ class FirewallTest extends TestCase
         $this->expectExceptionMessage(Exception::ERROR_EMPTY_LOG_FILE);
         $this->expectExceptionCode(Exception::ERROR_EMPTY_LOG_FILE_CODE);
         $firewall->setLogFile('');
-        $firewall->log('test', 'SQL');
+        $firewall->log('test', 'Sql');
     }
 
     /**

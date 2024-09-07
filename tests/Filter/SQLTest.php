@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace PhpWaf\Tests\Filter;
+namespace Riverside\Waf\Tests\Filter;
 
 use PHPUnit\Framework\TestCase;
-use PhpWaf\Filter\SQL;
+use Riverside\Waf\Filter\Sql;
 
-class SQLTest extends TestCase
+class SqlTest extends TestCase
 {
     public function testAttributes()
     {
@@ -16,19 +16,19 @@ class SQLTest extends TestCase
 
         foreach ($attributes as $attribute)
         {
-            $this->assertClassHasAttribute($attribute, SQL::class);
+            $this->assertClassHasAttribute($attribute, Sql::class);
         }
     }
 
     public function testIsSafe()
     {
-        $crlf = new SQL();
-        $this->assertTrue($crlf->safe('abc'));
+        $sql = new Sql();
+        $this->assertTrue($sql->safe('abc'));
     }
 
     public function testIsNotSafe()
     {
-        $crlf = new SQL();
-        $this->assertFalse($crlf->safe('TRUE DIV(SELECT ORD(LEFT'));
+        $sql = new Sql();
+        $this->assertFalse($sql->safe('TRUE DIV(SELECT ORD(LEFT'));
     }
 }

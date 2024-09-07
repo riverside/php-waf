@@ -1,15 +1,14 @@
 <?php
 declare(strict_types=1);
 
-
-namespace PhpWaf;
+namespace Riverside\Waf;
 
 /**
- * Class BaseFilter
+ * Class AbstractFilter
  *
- * @package PhpWaf
+ * @package Riverside\Waf
  */
-abstract class BaseFilter
+abstract class AbstractFilter
 {
     /**
      * Payloads
@@ -26,7 +25,7 @@ abstract class BaseFilter
     protected $payloads_file = "";
 
     /**
-     * BaseFilter constructor.
+     * AbstractFilter constructor.
      */
     public function __construct()
     {

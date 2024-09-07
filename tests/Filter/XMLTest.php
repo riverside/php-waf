@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace PhpWaf\Tests\Filter;
+namespace Riverside\Waf\Tests\Filter;
 
 use PHPUnit\Framework\TestCase;
-use PhpWaf\Filter\XML;
+use Riverside\Waf\Filter\Xml;
 
-class XMLTest extends TestCase
+class XmlTest extends TestCase
 {
     public function testAttributes()
     {
@@ -16,7 +16,7 @@ class XMLTest extends TestCase
 
         foreach ($attributes as $attribute)
         {
-            $this->assertClassHasAttribute($attribute, XML::class);
+            $this->assertClassHasAttribute($attribute, Xml::class);
         }
     }
 }

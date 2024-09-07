@@ -17,7 +17,7 @@ Next, add the following require entry to the <code>composer.json</code> file in 
 ```json
 {
     "require" : {
-        "riverside/php-waf" : "*"
+        "riverside/php-waf" : "^2.0"
     }
 }
 ```
@@ -39,17 +39,52 @@ $ php composer.phar install
     - waf.php
     ```php
     <?php
-    $waf = new \PhpWaf\Firewall();
+    $waf = new \Riverside\Waf\Firewall();
     $waf->run();
     ```
 
 ### Available filters
 | Filter             | Description           |
 | ------------------ | --------------------- |
-| SQL                | SQL Injection         |
-| CRLF               | CRLF Injection        |
-| XSS                | Cross-site Scripting  |
-| XML                | XML Attacks           |
+| Sql                | SQL Injection         |
+| Crlf               | CRLF Injection        |
+| Xss                | Cross-site Scripting  |
+| Xml                | XML Attacks           |
+
+### Migration Guide to Version 2.0.0
+##### What's changed
+In version 2.0.0, I have made the following updates to improve consistency and adherence to PHP best practices:
+1. Namespace renamed
+    - Old namespace: `PhpWaf`
+    - New namespace: `Riverside\Waf`
+2. Class names renamed
+    - Old names:
+      - `src/Filter/CRLF.php` (Class `CRLF`)
+      - `src/Filter/SQL.php` (Class `SQL`)
+      - `src/Filter/XML.php` (Class `XML`)
+      - `src/Filter/XSS.php` (Class `XSS`)
+      - `src/BaseFilter.php` (Class `BaseFilter`)
+    - New names:
+      - `src/Filter/Crlf.php` (Class `Crlf`)
+      - `src/Filter/Sql.php` (Class `Sql`)
+      - `src/Filter/Xml.php` (Class `Xml`)
+      - `src/Filter/Xss.php` (Class `Xss`)
+      - `src/AbstractFilter.php` (Class `AbstractFilter`)
+
+##### How to update your codebase
+1. Update class imports:
+    - Old way:
+      - `use PhpWaf\Firewall;`
+      - `use PhpWaf\Filter\CRLF;`
+      - `use PhpWaf\Filter\SQL;`
+      - `use PhpWaf\Filter\XML;`
+      - `use PhpWaf\Filter\XSS;`
+    - New way:
+      - `use Riverside\Waf\Firewall;`
+      - `use Riverside\Waf\Filter\Crlf;`
+      - `use Riverside\Waf\Filter\Sql;`
+      - `use Riverside\Waf\Filter\Xml;`
+      - `use Riverside\Waf\Filter\Xss;`
 
 [x1]: https://github.com/riverside/php-waf/actions/workflows/test.yml/badge.svg
 [y1]: https://github.com/riverside/php-waf/actions/workflows/test.yml

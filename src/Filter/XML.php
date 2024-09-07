@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace PhpWaf\Filter;
+namespace Riverside\Waf\Filter;
 
-use PhpWaf\BaseFilter;
+use Riverside\Waf\AbstractFilter;
 
 /**
- * Class XML
+ * Class Xml
  *
- * @package PhpWaf\Filter
+ * @package Riverside\Waf\Filter
  */
-class XML extends BaseFilter
+class Xml extends AbstractFilter
 {
     /**
      * Payload filename
