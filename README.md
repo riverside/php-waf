@@ -17,7 +17,7 @@ Next, add the following require entry to the <code>composer.json</code> file in 
 ```json
 {
     "require" : {
-        "riverside/php-waf" : "^2.0"
+        "riverside/php-waf" : "^2.0.1"
     }
 }
 ```
