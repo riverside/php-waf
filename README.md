@@ -6,7 +6,7 @@ PHP Web Application Firewall
 | [![CI][x1]][y1] | [![Latest Stable Version][x2]][y2] | [![License][x3]][y3] |
 
 ### Requirements
-- PHP >= 7.3
+- PHP >= 7.0
 
 ### Installation
 If Composer is not installed on your system yet, you may go ahead and install it using this command line:
